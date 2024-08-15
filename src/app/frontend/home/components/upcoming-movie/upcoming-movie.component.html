@@ -1,0 +1,41 @@
+<div class="row">
+    <!--list moive sắp chiếu -->
+    <div *ngFor="let upcoming of upcomingMovie" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 prs_upcom_slide_first">
+        <div class="prs_upcom_movie_box_wrapper">
+            <div class="prs_upcom_movie_img_box">
+                <img [src]="'http://127.0.0.1:8000/'+ upcoming?.photo"  width="250px" height="350px" alt="movie_img" />
+                <div class="prs_upcom_movie_img_overlay"></div>
+                <div class="prs_upcom_movie_img_btn_wrapper">
+                    <ul>
+                        <li><a href="#">View Trailer</a>
+                        </li>
+                        <li><a (click)="viewDetails(upcoming?.id)" href="javascript:void(0);">View Details</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="prs_upcom_movie_content_box">
+                <div class="prs_upcom_movie_content_box_inner">
+                    <h2><a (click)="viewDetails(upcoming?.id)" href="javascript:void(0);">{{upcoming?.name}}</a></h2>
+                    <!-- <div *ngFor = "let category of upcoming.categories"><p>{{category.name}}</p></div>  -->
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <div class="prs_upcom_movie_content_box_inner_icon">
+                    <ul>
+                        <li>
+                            <a [routerLink]="['/movie-booking', upcoming?.id]">
+                                <img width="32px" height="32px" src="../../../../assets/images/content/ticket_7550408.png" alt="" srcset="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- list movie1- -->
+    
+</div>

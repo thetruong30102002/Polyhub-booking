@@ -1,0 +1,208 @@
+	<div class="prs_title_main_sec_wrapper">
+		<div class="prs_title_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="prs_title_heading_wrapper">
+						<h2>Movie Booking</h2>
+						<ul>
+							<li><a href="#">Home</a>
+							</li>
+							<li>&nbsp;&nbsp; >&nbsp;&nbsp; Movie Bookin</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- prs title wrapper End -->
+	<!-- prs video top Start -->
+	<div class="prs_booking_main_div_section_wrapper">
+	<div class="prs_top_video_section_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="st_video_slider_inner_wrapper float_left">
+						<div class="st_video_slider_overlay"></div>
+						<div class="st_video_slide_sec float_left">
+							<a rel='external' href='https://www.youtube.com/embed/ryzOXAO0Ss0' title='title' class="test-popup-link">
+								<img src="../../../../assets/images/index_III/icon.png" alt="img">
+							</a>
+							<h3>Aquaman</h3>
+							<p>ENGLISH, HINDI, TAMIL</p>
+							<h4>ACTION | Adventure | Fantasy</h4>
+							<h5><span>2d</span> <span>3d</span> <span>D 4DX</span> <span>Imax 3D</span></h5>
+						</div>
+						<div class="st_video_slide_social float_left">
+						<div class="st_slider_rating_btn_heart st_slider_rating_btn_heart_5th">
+								<h5><i class="fa fa-heart"></i> 85%</h5>
+								<h4>52,291 votes</h4>
+							</div>
+							<div class="st_video_slide_social_left float_left">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook-f"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a>
+									</li>
+									<li><a href="#"><i class="fa fa-youtube"></i></a>
+									</li>
+								</ul>
+							</div>
+							<div class="st_video_slide_social_right float_left">
+								<ul>
+									<li data-animation="animated fadeInUp" class=""><i class="far fa-calendar-alt"></i> 14 Dec, 2022</li>
+									<li data-animation="animated fadeInUp" class=""><i class="far fa-clock"></i> 2 hrs 23 mins</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="st_slider_rating_main_wrapper float_left">
+		<div class="container">
+		  <div class="st_calender_tabs">
+			<ul class="nav nav-tabs">
+			  <li *ngFor="let date of showingDates" [class.active]="date === showingDates[0]">
+				<a data-toggle="tab" [href]="'#' + date">
+				  <span>{{ date | date: 'EEE' }}</span> <br> {{ date | date: 'd' }}
+				</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </div>
+	  
+	  <div class="st_slider_index_sidebar_main_wrapper st_slider_index_sidebar_main_wrapper_booking float_left">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<div class="st_indx_slider_main_container float_left">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="tab-content">
+									<div *ngFor="let date of showingDates" [id]="date" class="tab-pane" [ngClass]="{'active': date === showingDates[0]}">
+										<div class="st_calender_contant_main_wrapper float_left">
+											<!-- Loop through each grouped showings by date -->
+											<div *ngFor="let key of getObjectKeys(groupedShowings)">
+												<div *ngIf="key.startsWith(date)">
+													<div class="st_calender_row_cont float_left">
+														<div class="st_calender_asc">
+															<div class="st_calen_asc_heart">
+																<a href="#">
+																	<i class="fa fa-heart"></i>
+																</a>
+															</div>
+															<div class="st_calen_asc_heart_cont">
+																<h3>{{ groupedShowings[key].city }}</h3>
+																<div *ngFor="let cinemaKey of getObjectKeys(groupedShowings[key].cinemas)" class="cinema-container">
+																	<div class="st_calen_asc_heart_cont">
+																		<h4>{{ groupedShowings[key].cinemas[cinemaKey].name }}</h4>
+																		<div class="st_calen_asc_heart_images_times">
+																			<ul class="cinema-features">
+																				<li>
+																					<img src="../../../../assets/images/content/fast-food.png" alt="Fast Food">
+																				</li>
+																				<li>
+																					<img src="../../../../assets/images/content/bill.png" alt="Bill">
+																				</li>
+																			</ul>
+																			<div class="st_calen_asc_tecket_time_select">
+																				<ul class="showing-times">
+																					<li *ngFor="let showing of groupedShowings[key].cinemas[cinemaKey].showings">
+																						<div class="showing-details">
+																							<span>
+																								<h4>Rs.{{ showing.price }}</h4>
+																								<p class="asc_pera1">{{ showing.room.type }}</p>
+																								<p class="asc_pera2">{{ showing.availability }}</p>
+																							</span>
+																							<div class="showing-bookings">
+																								<a (click)="onContinue(showing)" *ngFor="let time of showing.time_release">
+																									{{ time | date: 'hh:mm a' }}
+																								</a>
+																							</div>
+																						</div>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Nếu không có dữ liệu -->
+											<ng-template #noShowings>
+												<p>No showings available for this date.</p>
+											</ng-template>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<!-- Sidebar content -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	</div>
+	<!-- st slider sidebar wrapper End -->
+	<!-- prs patner slider Start -->
+	<div class="prs_patner_main_section_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="prs_heading_section_wrapper">
+						<h2>Our Patner’s</h2>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="prs_pn_slider_wraper">
+						<div class="owl-carousel owl-theme">
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p1.jpg" alt="patner_img">
+								</div>
+							</div>
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p2.jpg" alt="patner_img">
+								</div>
+							</div>
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p3.jpg" alt="patner_img">
+								</div>
+							</div>
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p4.jpg" alt="patner_img">
+								</div>
+							</div>
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p5.jpg" alt="patner_img">
+								</div>
+							</div>
+							<div class="item">
+								<div class="prs_pn_img_wrapper">
+									<img src="../../../../assets/images/content/p6.jpg" alt="patner_img">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<app-newsletter></app-newsletter>

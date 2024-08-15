@@ -1,0 +1,76 @@
+<div class="prs_navigation_main_wrapper">
+	<div class="container-fluid">
+		<div id="search_open" class="gc_search_box">
+			<input type="text" placeholder="Search here">
+			<button><i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div class="prs_navi_left_main_wrapper">
+			<div class="prs_logo_main_wrapper">
+				<a routerLink="home">
+					<img src="../../../assets/images/header/logo.png" alt="logo" />
+				</a>
+			</div>
+			<div class="prs_menu_main_wrapper">
+				<nav class="navbar navbar-default">
+					<div id="dl-menu" class="xv-menuwrapper responsive-menu">
+						<button class="dl-trigger">
+							<img src="../../../assets/images/header/bars.png" alt="bar_png">
+						</button>
+						<div class="prs_mobail_searchbar_wrapper" id="search_button">	<i class="fa fa-search"></i>
+						</div>
+						<div class="clearfix"></div>
+						<ul class="dl-menu">
+							<li class="parent"><a routerLink="home">Home</a></li>
+							<li class="parent"><a routerLink="movies">movie</a></li>
+							<li class="parent"><a routerLink="blogs">Blog</a>
+							</li>
+							<li class="parent"><a href="contact.html">contact</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /dl-menuwrapper -->
+				</nav>
+			</div>
+		</div>
+		<div class="prs_navi_right_main_wrapper">
+			<div class="prs_slidebar_wrapper">
+			</div>
+			<div class="prs_top_login_btn_wrapper">
+				<div class="prs_animate_btn1">
+					<ul>
+						<li *ngIf="!isLoggedIn">
+							<a routerLink="signin" class="button button--tamaya" data-text="sign in/sign up" data-toggle="modal" data-target="#myModal">
+							  <span>sign in/sign up</span>
+							</a>
+						  </li>
+						  <li *ngIf="isLoggedIn" class="user-menu">
+							<div class="user-icon" (click)="toggleMenu()">
+								<i class="fa fa-user-circle"></i>
+							  </div>
+							<div class="dropdown-menu" [ngClass]="{ 'show': menuOpen }">
+							  <a routerLink="/user" class="dropdown-item">Profile</a>
+							  <a (click)="logout()" class="dropdown-item">Sign out</a>
+							</div>
+						  </li>
+					</ul>
+				</div>
+			</div>
+			<div class="product-heading">
+				<div class="con">
+					<select>
+						<option>All Categories</option>
+						<option>Movie</option>
+						<option>Video</option>
+						<option>Music</option>
+						<option>TV-Show</option>
+					</select>
+					<input type="text" placeholder="Search Movie , Video , Music">
+					<button type="submit"><i class="flaticon-tool"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
